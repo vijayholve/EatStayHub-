@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'style/dishcreate.css' %}">
+{% endblock style %}
+    
+
+{% block content%}
+<div class="createdish">
+    <form method="POST" action="" incttype="multipart/form-data">
+        {% csrf_token %}
+        <div class="dishname">
+            <label >dish name</label>
+            <input type="text" placeholder="enter dish" name="dishname">
+        </div>
+        <div class="discription">
+            <label >description</label>
+            <input type="text" placeholder="enter description" name="description">
+        </div>
+        <div class="file">
+          <label >image</label>
+
+            <input type="file" name="dishImage" id="image">
+        </div>
+        <div class="submit">
+            <input type="submit"   value="submit dish">
+        </div>
+    </form>
+</div>  
+{% endblock %}

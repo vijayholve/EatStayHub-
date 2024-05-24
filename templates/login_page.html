@@ -1,0 +1,112 @@
+{% extends "main.html" %}
+{% block style %}
+<link rel="stylesheet" href="static/style/login_page.css">
+  
+{% endblock style %}
+  
+{% block content%}
+ {% if page == "login" %}
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign In</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<form method="POST" action="">
+          {% csrf_token %}
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span><br>
+						</div>
+						<input type="text" id="username" name="username" class="form-control" placeholder="username">
+						<br><br>
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" id="password" name="password" class="form-control" placeholder="password">
+					</div><br>
+					<br>
+					<div class="form-group">
+						<input id="submit" type="submit" value="Login" class="btn float-right login_btn">
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div id="signup"class="d-flex justify-content-center links">
+					<h4>Don't have an account'?<a href="{% url 'register'%}">Sign Up</a></h4>
+				</div>
+		
+			</div>
+		</div>
+	</div>
+</div>
+{% else %}
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign In</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<form method="POST" action="">
+          {% csrf_token %}
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span><br>
+						</div>
+						
+						<input type="text" id="username" name="firstname" class="form-control" placeholder="firstname">
+						<br><br>
+					</div>
+						
+					<input type="text" id="username" name="lastname" class="form-control" placeholder="lastname">
+					<br><br>
+						
+				<input type="text" id="username" name="username" class="form-control" placeholder="username">
+				<br><br>
+			
+				<input type="password" id="password" name="password" class="form-control" placeholder="password">
+			    <div class="form-group">
+					<br>
+				</div>
+			
+					<input id="submit" type="submit" value="Login" class="btn float-right login_btn">
+				<div class="card-footer"><br>
+					<div id="signup"class="d-flex justify-content-center links">
+						<h4>already you	 have an account'?<a href="{% url 'login-page'%}">login</a></h4>
+					            </div>
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						
+					<br>
+			
+				              </div>
+			                 </div>
+                          </div>
+				        </div>
+			      </div>
+					
+				</form>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+{% endif %}
+{% endblock content%}
