@@ -1,8 +1,10 @@
 from django.urls import path
 from . import views
-from django.conf import settings
 from django.conf.urls.static import static
-  
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
 urlpatterns = [
 path("",views.home,name="home"),
 path("login-page",views.login_page,name="login-page"),
@@ -14,5 +16,7 @@ path("restaurant-update/<str:pk>/",views.update_restaurant,name="restaurant-upda
 path("restaurant-delete/<str:pk>/",views.delete_restaurant,name="restaurant-delete"),
 path("dish-delete/<str:pk>/",views.delete_dish,name="dish-delete"),
 path("dish-update/<str:pk>/",views.update_dish,name="dish-update"), 
-
+path("blank",views.blank,name="blank")
 ]
+
+

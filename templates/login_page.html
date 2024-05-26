@@ -1,110 +1,91 @@
 {% extends "main.html" %}
-{% block style %}
-<link rel="stylesheet" href="static/style/login_page.css">
-  
-{% endblock style %}
+
   
 {% block content%}
+
  {% if page == "login" %}
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Sign In</h3>
-				<div class="d-flex justify-content-end social_icon">
-					<span><i class="fab fa-facebook-square"></i></span>
-					<span><i class="fab fa-google-plus-square"></i></span>
-					<span><i class="fab fa-twitter-square"></i></span>
+ <div class="login_page">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login" method="POST" action="">
+				{% csrf_token %}
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" name="username" placeholder="User Name...">
 				</div>
-			</div>
-			<div class="card-body">
-				<form method="POST" action="">
-          {% csrf_token %}
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span><br>
-						</div>
-						<input type="text" id="username" name="username" class="form-control" placeholder="username">
-						<br><br>
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" id="password" name="password" class="form-control" placeholder="password">
-					</div><br>
-					<br>
-					<div class="form-group">
-						<input id="submit" type="submit" value="Login" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div id="signup"class="d-flex justify-content-center links">
-					<h4>Don't have an account'?<a href="{% url 'register'%}">Sign Up</a></h4>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" class="login__input" name="password" placeholder="Password">
 				</div>
-		
+					<input type="submit" value="login">				
+			</form>
+			<div class="social-login">
+				<h3>have not account ?<a href="{% url 'register' %}">register</a></h3>
+				<div class="social-icons">
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
 			</div>
 		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
 	</div>
 </div>
 {% else %}
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Sign In</h3>
-				<div class="d-flex justify-content-end social_icon">
-					<span><i class="fab fa-facebook-square"></i></span>
-					<span><i class="fab fa-google-plus-square"></i></span>
-					<span><i class="fab fa-twitter-square"></i></span>
-				</div>
-			</div>
-			<div class="card-body">
-				<form method="POST" action="">
-          {% csrf_token %}
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span><br>
-						</div>
-						
-						<input type="text" id="username" name="firstname" class="form-control" placeholder="firstname">
-						<br><br>
-					</div>
-						
-					<input type="text" id="username" name="lastname" class="form-control" placeholder="lastname">
-					<br><br>
-						
-				<input type="text" id="username" name="username" class="form-control" placeholder="username">
-				<br><br>
-			
-				<input type="password" id="password" name="password" class="form-control" placeholder="password">
-			    <div class="form-group">
-					<br>
-				</div>
-			
-					<input id="submit" type="submit" value="Login" class="btn float-right login_btn">
-				<div class="card-footer"><br>
-					<div id="signup"class="d-flex justify-content-center links">
-						<h4>already you	 have an account'?<a href="{% url 'login-page'%}">login</a></h4>
-					            </div>
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						
-					<br>
-			
-				              </div>
-			                 </div>
-                          </div>
-				        </div>
-			      </div>
+<div class="login_page">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login" method="POST" action="">
+				
+				{% for message in messages  %}
+					<p id="error">@ {{message}}</p>
+				{% endfor %}
 					
-				</form>
-			</div>
+				{% csrf_token %}
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" name="fullname" placeholder="enter full name">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" name="email" placeholder="enter Email">
+				</div>
+                <div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" name="username" placeholder="User Name">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" class="login__input" name="password" placeholder="Password">
+					<span toggle="#password-field" class="fa fa-fw fa-eye field-icon danger toggle-password "></span>
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" class="login__input" name="confirm-password" placeholder="Confirm Password">
+				</div>
+					<input type="submit" value="login">				
+			</form>
 			
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
+				<div class="social-login">
+					<h3>already have a account ? <a href="{% url 'login-page'%}">Login</a></h3>
+					<div class="social-icons">
+			</div>
 		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
 	</div>
 </div>
 

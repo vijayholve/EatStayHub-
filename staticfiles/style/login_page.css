@@ -1,0 +1,47 @@
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+justify-content: center;
+align-items: center;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+#username,#password,#submit,#sigup,#email{
+    margin-left: 50px;
+}
+#email{
+margin-left: 55px;
+}
+
+.social_icon span{
+font-size: 60px;
+margin-left: 10px;
+color: #FFC312;
+}
+#error{
+    background-color: red;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+
+.card-header h3{
+color: white;
+}
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+
+
+
+

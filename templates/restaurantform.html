@@ -1,9 +1,9 @@
 {% extends "main.html" %}
 {% load static %}
 {% block style %}
-<link rel="stylesheet"  href="{% static 'style/restaurantform.css' %}">
 {% endblock style %}
 {% block content %}
+{% include "navbar.html" %}
 <div class="box">
     <div class="container">
         <form method="POST" action="" >

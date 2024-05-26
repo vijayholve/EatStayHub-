@@ -7,7 +7,8 @@ from  django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-
+from .form import user_form
+from django.db.models import aggregates
 def home(request):
     q=request.POST.get("q") if request.POST.get("q") != None else ''
     users=User.objects.all()
@@ -37,27 +38,50 @@ def login_page(request):
 def register(request):
     page="resister"
     if request.method =="POST":
-        firstname=request.POST.get("firstname")
-        lastname=request.POST.get("lastname")
-        username=request.POST.get("username")
-        password=request.POST.get("password")
-        user=User.objects.create(
-            first_name=firstname,
-            last_name=lastname,
-            username=username
-            )
-        
-        user.set_password(password)
-        user.save()
-        login(request,user)
-        return redirect("home")
+        return _extracted_from_register_4(request)
     context={"page":page}
     return render(request,"login_page.html",context)
+
+
+# TODO Rename this here and in `register`
+def _extracted_from_register_4(request):
+    fullname=request.POST.get("fullname")
+    email=request.POST.get("email")
+    username=request.POST.get("username")
+    password=request.POST.get("password")
+    confirm_password=request.POST.get("confirm-password")
+    print(fullname,"n",email,"/n",username,"/n",password,"/n",confirm_password)
+    if password == confirm_password :
+        messages.error(request,"Password Does Not Matching")
+        return redirect("register")
+    if username is None or len(username) <=5:
+        messages.error(request,"please enter avlid username")
+        return redirect("register")
+
+    if fullname is None or len(fullname) <= 5:
+        messages.error(request,"please enter valid fullname")
+        return redirect("register")
+
+    if email is None or len(email) <= 5:
+        messages.error(request,"please enter valid  email")
+        return redirect("register")
+    try:
+
+        user=User.objects.create(
+            first_name=fullname,
+            email=email,
+            username=username
+            )
+    except Exception as e:
+        messages.error(request,"error is :e ")
+    user.set_password(password)
+    user.save()
+    login(request,user)
+    return redirect("home")
 @login_required(login_url="login-page")
 def logout_page(request):
     logout(request)
     return redirect("login-page")
-
 
 @login_required(login_url="login-page ")
 def create_restaurant(request):
@@ -92,36 +116,27 @@ def delete_restaurant(request,pk):
     return render(request,"delete_restaurant.html",content)
 def restaurant_data(request,pk):
     restaurant=restaurants.objects.get(id=pk)
+    q= request.GET.get("q")
     dishes=restaurant.dish_set.all()
-    if request.method == "POST":
-        create_dishes=dish.objects.create(
-            dishName=request.POST.get("dishname"),
-            description=request.POST.get("description"),
-            dishImage=request.POST.get("dishImage"),
-            user=request.user,
-            hotel=restaurant.hotel,
-            restaurants=restaurant
-            )
-        return redirect("restaurant-data",pk=restaurant.id)
-    
-    if request.POST.get("search_dish"):
-        dishes=dishes.filter(Q(description__icontains=request.POST.get("search_dish")) |
-                             Q(dishName__icontains=request.POST.get("search_dish"))                              
+    create_dish(request,restaurant)
+    if q is not None :
+         
+        dishes=dishes.filter(Q(dishName__icontains=q) |
+                             Q(description__icontains=q) |
+                             Q(price__icontains=q) 
                              )
-        print("dish is",dishes)    
+   
+       
 
     content={"restaurant":restaurant,"dishes":dishes}
-    return render(request,"restaurand_data.html",content)
+    return render(request,"restaurant_data.html",content)
 @login_required(login_url="login-page")
 def delete_dish(request,pk):
     dish_obj=dish.objects.get(id=pk)
     restaurant=dish_obj.restaurants
     dish_obj.delete()
     return redirect("restaurant-data",pk=restaurant.id)
-    
-
-
-
+@login_required(login_url="login-page")
 def update_dish(request,pk):
     dish_obj=dish.objects.get(id=pk)
     dishname=request.POST.get("dishname")
@@ -134,3 +149,21 @@ def update_dish(request,pk):
         dish_obj.save()
         return redirect("restaurant-data",pk=dish_obj.restaurants.id)
     return render(request,"update_dish.html")
+
+def blank(request):
+    form=user_form()
+    context={"form":form}
+    return render(request,"blank_form.html",context)
+
+def create_dish(request,restaurant):
+    if request.method == "POST":
+        create_dishes=dish.objects.create(
+                dishName=request.POST.get("dishname"),
+                description=request.POST.get("description"),
+                dishImage=request.POST.get("dishImage"),
+                user=request.user,
+                hotel=restaurant.hotel,
+                restaurants=restaurant,
+                price=request.POST.get("price"),
+                ) 
+        return redirect("restaurant-data",pk=restaurant.id)
