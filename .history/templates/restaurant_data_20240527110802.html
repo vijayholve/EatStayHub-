@@ -1,0 +1,118 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% include "navbar.html"   %}
+<div class="all_box">
+     <div class="restaurant_box">
+    <h1>{{restaurant.restaurantName}}</h1>
+     <h3>{{restaurant.locations}}</h3>
+    <hr>    
+    </div>
+
+<h2 ><a href="{% url 'restaurant-data' restaurant.id %}">All</a></h2>
+<div class="box">
+    <form name="search">
+        <label for="search"></label>
+        <input type="text" class="input" name="q"  >
+        <input type="submit" name="btn" id="btn">
+      </form>
+    <i class="fas fa-search"></i>
+
+</div> 
+{% for message in messages %}
+      <li>{{message}}</li>
+{% endfor%}
+{% if dishes.count != 0 %}
+<div class="search-box">
+  <button class="btn-search"><i class="fas fa-search"></i></button>
+  <input type="text" class="input-search" placeholder="Type to Search...">
+</div>
+
+
+<footer>
+<p>
+  Created with <i class="fa fa-heart"></i> by
+  <a target="_blank" href="https://codepen.io/ahmadbassamemran/">Ahmad Emran</a>
+  Follow me : 
+    <a target="_blank"  href="https://www.instagram.com/ahmadbassamemran/"><i class="fab fa-instagram"></i></a>
+  <a target="_blank"  href="https://www.linkedin.com/in/ahmademarn/"><i class="fab fa-linkedin"></i></a>
+  <a target="_blank" href="https://codepen.io/ahmadbassamemran/"><i class="fab fa-codepen"></i></a> 
+      <a target="_blank" href="https://dev.to/ahmadbassamemran"><i class="fab fa-dev"></i></a> 
+           <a target="_blank" href="https://twitter.com/ahmadbassamemra"><i class="fab fa-twitter-square"></i></a> 
+</p>
+</footer>
+
+<div class="">
+        <table class="container" border="1">
+            <thead class="thead-dark">
+              <tr>
+                <th class="no">No</th>
+                <th scope="col">dish name</th>
+                <th scope="col">decriptions</th>
+                <th scope="col">image</th>
+                <th scope="col">operations</th>
+                <th class="no" scope="col">price</th>
+
+              </tr>
+            </thead>
+            
+          {% endif %}
+            <tbody>
+              {% for dish in dishes %}
+              
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <th scope="row">{{dish.dishName}}</th>
+                <td>{{dish.description}}</td>
+                <td>{{dish.dishImage}}</td>
+                <td  >  
+                  {% if request.user.is_authenticated %} 
+                 <button><a href="{% url 'dish-update' dish.id %}">update</a></button>
+                 <button><a href="{% url 'dish-delete' dish.id %}">delete</a></button>
+                 {% endif %}
+                </td>
+                <td>{{dish.price}}</td>
+
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+
+   
+      </div>
+ </div>
+ <div class="form_box">
+  <form method="POST" action="" incttype="multipart/form-data">   
+      {% csrf_token %}
+      <div >
+        <label for="dishname">dish name</label>
+          <input type="text" placeholder="enter dish" id="dishname" name="dishname">
+          <br>
+      </div>
+      <div class="discription"><br>
+        <label for="description">description</label>
+          <input type="text" placeholder="enter description" id ="description"name="description">
+          <br><br>
+          <div class="price">
+            <label for="price">
+              price
+            </label><br>
+              <input  type="number" min="100" step="100" name="price" id="price"><br>
+          </div>
+      </div>
+      <div class="file">
+        <label for="image">image</label><br>
+          <input type="file" name="dishImage" id="image"><br>
+      </div>
+      <div class="submit"><br>
+          <input type="submit" class="submit"  value="submit dish">
+      </div>
+  </form>
+</div>
+
+
+{% endblock content %}
+    
+
+
