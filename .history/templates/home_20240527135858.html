@@ -1,0 +1,63 @@
+{% extends "main.html" %}
+{% load static %}
+{% block style %}
+  
+{% endblock style %}
+
+{% block content %}
+<div>
+<div>
+    <h1>hello {{request.user}}</h1>
+</div>
+<div class="button"><a href="{% url 'restaurant-create' %}">create restaurant</a>
+</div>
+    
+<div>
+    {% if request.user.is_authenticated %}    
+    <a href="{% url 'logout-page' %}">
+    </a> 
+  
+    {% else %}
+    <div id="btn">
+    <a href="{% url 'login-page' %}" class="button-85" style="color:white"><button class="button-85" role="button">
+        login
+        </button
+    </a>   
+    </div>
+    {% endif %}
+</div>
+{% comment %} 
+<p>all user</p>
+
+{% for user in users %}
+    <p>{{user.username}}</p>
+{% endfor %}
+
+{% endcomment %}
+
+    {% for restaurant in restaurants %}
+<div class="restaurantbox">
+<hr>
+<div class="operation">
+    {% if request.user.is_authenticated %}   
+    <p>{{restaurant.id}}
+    <a href="{% url 'restaurant-update' restaurant.id %}" >edit</a>
+    <a href="{% url 'restaurant-delete' restaurant.id %}" >delete</a>
+    {% endif %}
+    <a href="{% url 'restaurant-data' restaurant.id %}"><h1>{{restaurant.restaurantName}}<br></h1></a>
+</div>
+<div>
+    {% for dish in restaurant.dish_set.all|slice:":4" %}  
+    {% comment %} <p> {{dish.all.aggregate.Min("price")}}</p> {% endcomment %}
+    <p>{{dish.dishName}}</p> 
+    {% endfor %}
+    {% endfor %}
+</div>
+</div>
+</div>
+{% endblock content %}
+    
+
+
+
+
