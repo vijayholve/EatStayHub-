@@ -1,0 +1,9 @@
+.button{
+    color: rgb(33, 66, 148);
+    text-align: right;
+    padding: 5px 7px 5px 7px;
+    border: 1px solid blueviolet;
+}
+.restaurantbox{
+   display: grid;
+}
