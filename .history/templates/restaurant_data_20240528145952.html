@@ -1,0 +1,76 @@
+{% extends "main.html" %}
+{% load static %}
+{% block css_content %}
+  <link rel="stylesheet" href="{%  static 'cssfile/restaurand_data.css' %}">
+{% endblock css_content %}
+  
+{% block content %}
+{% include "navbar.html"   %}
+<div class="restaurant-details">
+     <div class="restaurant_box">
+    <h1>{{restaurant.restaurantName}}</h1>
+     <h3>{{restaurant.locations}}</h3>
+    <hr>    
+  </div>
+
+
+{% for message in messages %}
+      <li>{{message}}</li>
+{% endfor%}
+
+<div class="search-box">
+  <form>
+  
+  <input type="text" class="input-search" name="q" placeholder="Type to Search...">
+  <button class="button-85" role="button">submit</button>
+  </form>
+</div>
+
+<h2><a href="{%  url ''%}"></a></h2>
+{% if dishes.count != 0 %}
+    
+<div class="screen_background">
+        <table class="container" >
+            <thead class="thead-dark">
+              <tr>
+                <th class="no">No</th>
+                <th scope="col">dish name</th>
+                <th scope="col">decriptions</th>
+                <th scope="col">image</th>
+                <th scope="col">operations</th>
+                <th class="no" scope="col">price</th>
+
+              </tr>
+            </thead>
+            
+          {% endif %}
+            <tbody>
+              {% for dish in dishes %}
+              
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <th scope="row">{{dish.dishName}}</th>
+                <td>{{dish.description}}</td>
+                <td>{{dish.dishImage}}</td>
+                <td  >  
+                  {% if request.user.is_authenticated %} 
+                 <button><a href="{% url 'dish-update' dish.id %}">update</a></button>
+                 <button><a href="{% url 'dish-delete' dish.id %}">delete</a></button>
+                 {% endif %}
+                </td>
+                <td>{{dish.price}}</td>
+
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+      </div>
+ </div>
+ <h1><a href="{% url 'dish-create' restaurant.id %}">create dish</a></h1>
+
+
+{% endblock content %}
+    
+
+
