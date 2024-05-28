@@ -166,16 +166,14 @@ def update_dish(request,pk):
 def create_dish(request,pk):
     restaurant=restaurants.objects.get(id=pk)
     if request.method == "POST":
-        
         create_dishes=dish.objects.create(
                 dishName=request.POST.get("dishname"),
                 description=request.POST.get("description"),
                 dishImage=request.POST.get("dishImage"),
-                user=request.user,
+                user=request.user.user,
                 hotel=restaurant.hotel,
                 restaurants=restaurant,
                 price=request.POST.get("price"),
                 ) 
-        return redirect("restaurant-data",pk=restaurant.id)    
     return render(request,'dishform.html')
     

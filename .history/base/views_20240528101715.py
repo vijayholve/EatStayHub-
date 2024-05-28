@@ -176,6 +176,6 @@ def create_dish(request,pk):
                 restaurants=restaurant,
                 price=request.POST.get("price"),
                 ) 
-        return redirect("restaurant-data",pk=restaurant.id)    
+        return redirect("restaurantdata")    
     return render(request,'dishform.html')
     
