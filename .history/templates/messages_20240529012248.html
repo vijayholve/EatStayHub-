@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+
+{% block css_content %}
+    <link rel="stylesheet" href="{%static 'cssfiles/messages.css' %}">
+{% endblock css_content %}
+    
+{% block content %}
+{% for message in messages %}
+<div class="validation">Validation message 1<br>Validation message 2</div>
+endf
+{% endblock %}
+
+
+
+
+
+
+
+
