@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% load static %}
+{% block css_content %}
+  <link rel="stylesheet" href="{%  static 'cssfile/home.css' %}">
+{% endblock css_content %}
+
+{% block content %}
+<div class="home_screen">
+    <div class="screen__content_home">
+        <h1>hello {{request.user}}</h1>
+
+        {% if request.user.is_authenticated %}
+        <div cla="home_box">
+            <button class="button-85">
+                <a href="{% url 'restaurant-create' %}">Create restaurant</a>
+            </button>    
+            <button class="button-85" role="button">
+                <a href="{% url 'logout-page' %}" class="button-85" style="color:white" >logout</a>
+                </button>
+        </div>
+    {% else %}
+        <button class="button-85" role="button">
+           
+    <a href="{% url 'login-page' %}" class="button-85" style="color:white" >login</a> 
+    </button>
+      
+
+    {% endif %}
+    
+    
+    <div >
+        <a href=""><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC2ElEQVR4nO2ZW4hNURjHf+Moxj2XyaUkREwywhNlKLdCFCfUFG/uSjEKD+LJLTXnhShvQ5S8MIkXTS4vPJCoCUnCSDMalzOXs7TqU7vdnr332Xutszftf32dztlnrW/91u1b69uQKVOmTBXSNGAFsBVYA9QBOf4RDQeOAa8B5WFfgAsC6afxwCKvB3Owrw3A534AlMt+Ayc9RmgKUAB+AfPcDiYAP4DNFiEOAaWQEMphN4HFwGGgFeiT3697OTkgD4vAcgsQDREAlI99BGq8HN12DelGgxCTgZ8GIdqBWql7GLDS6eyd6896+PYZArliEOIZkAd2AM1AF7DK6ayjn4JXgZExIEbICJsC6XN9P+h2+Mmn8BtgWUSQvOG1oRx2ysvhoxAFb8jWV46OWwAoAUf6c3gmZCV6mlxyLLYgXTQM0QOs93O4MEKv3AW2A6N96m0yDPI9TO/dj1h5t5Q9AawFJgFVjiBoEqQjDMhsg/t9Ubb0t4ZBPvgB/O09rS0eW1ya7KUfyEDgObAHGCcwJiOxSbsTNK3aHX9+HxBXkrRCEEhLChqpQtiuIJD9KWikCmH6BumrUUBnChqqfKwz7DW4MQWNVT52jZDKxQiKlbA8ZSYGWlPQaOVxNNGXqLI0CDifssDYRAzVyu3uW8IQJWBmFID50gP6LnFWomlvgiDNUUeiGviagumk5GQ9nRjanQIIBZwjpnIpOLa0AUMxIJ09eZgQRC+wBIPS6+VyxFRnHGvEknTu9ZZc/itxFKnCsnTCbbXklGwEzBYJyNY1QI78XRYg7slUtg6gMySPLU0nfYKwOhITgZ3AK0sAPaYWdh0wF5gqn/WSdCtIxsLmon4BLMCQaqTR3ZYb7U6yHQUGY0Ez5HBWtAxwGhhDBTRWXvA8NRihHwDbgCEkpFnAXnnp2BYyuusEwRN5vbwpIMGdmKrlglMvW7Fu6DpgqdxhdPI6Uyb+I/0BtL6/+Ljwfj8AAAAASUVORK5CYII="></a>
+    </div>
+    </a>
+    {% for restaurant in restaurants %}
+<div class="restaurantbox">
+<hr>
+<div class="image-restaurant">
+    <img src="/media/{{restaurant.image}}/" alt="{{restarant.image}}"> 
+
+</div>
+
+<div class="operation">
+    {% if request.user.is_authenticated %}   
+    <p>{{restaurant.id}}
+    <button class="button-85" role="button">
+    <a href="{% url 'restaurant-update' restaurant.id %}" >edit</a>
+    </button>   
+    <button class="button-85" role="button">
+    <a href="{% url 'restaurant-delete' restaurant.id %}" >delete</a>
+    </button>   
+    {% endif %}
+</div>
+    <a href="{% url 'restaurant-data' restaurant.id %}"><h1>{{restaurant.restaurantName}}<br></h1></a>
+<div>
+    {% for dish in restaurant.dish_set.all|slice:":4" %}  
+    {% comment %} <p> {{dish.all.aggregate.Min("price")}}</p> {% endcomment %}
+    <p>{{dish.dishName}}</p> 
+    {% endfor %}
+    {% endfor %}
+</div>
+</div>
+
+<div class="    ">
+    <div class="screen__background__shape screen__background__shape4"></div>
+    <div class="screen__background__shape screen__background__shape3"></div>		
+    <div class="screen__background__shape screen__background__shape2"></div>
+    <div class="screen__background__shape screen__background__shape1"></div>
+</div>	
+</div>
+</div>
+{% endblock content %}
+    
+
+
+
+

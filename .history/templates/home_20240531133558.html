@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% load static %}
+{% block css_content %}
+  <link rel="stylesheet" href="{%  static 'cssfile/home.css' %}">
+{% endblock css_content %}
+
+{% block content %}
+<div class="home_screen">
+    <div class="screen__content_home">
+        <h1>hello {{request.user}}</h1>
+
+        {% if request.user.is_authenticated %}
+        <div cla="home_box">
+            <button class="button-85">
+                <a href="{% url 'restaurant-create' %}">Create restaurant</a>
+            </button>    
+            <button class="button-85" role="button">
+                <a href="{% url 'logout-page' %}" class="button-85" style="color:white" >logout</a>
+                </button>
+        </div>
+    {% else %}
+        <button class="button-85" role="button">
+           
+    <a href="{% url 'login-page' %}" class="button-85" style="color:white" >login</a> 
+    </button>
+      
+
+    {% endif %}
+
+<div class="logos">
+    <a href="https://www.instagram.com/vijay_77v/?next=%2F"><img src="c:/Users/Vijay\Pictures\Saved Pictures\Instagram_logo_2022.svg.webp" alt="instagram"></a>
+
+</div>
+
+    {% for restaurant in restaurants %}
+<div class="restaurantbox">
+<hr>
+<div class="image-restaurant">
+    <img src="/media/{{restaurant.image}}/" alt="{{restarant.image}}"> 
+
+</div>
+
+<div class="operation">
+    {% if request.user.is_authenticated %}   
+    <p>{{restaurant.id}}
+    <button class="button-85" role="button">
+    <a href="{% url 'restaurant-update' restaurant.id %}" >edit</a>
+    </button>   
+    <button class="button-85" role="button">
+    <a href="{% url 'restaurant-delete' restaurant.id %}" >delete</a>
+    </button>   
+    {% endif %}
+</div>
+    <a href="{% url 'restaurant-data' restaurant.id %}"><h1>{{restaurant.restaurantName}}<br></h1></a>
+<div>
+    {% for dish in restaurant.dish_set.all|slice:":4" %}  
+    {% comment %} <p> {{dish.all.aggregate.Min("price")}}</p> {% endcomment %}
+    <p>{{dish.dishName}}</p> 
+    {% endfor %}
+    {% endfor %}
+</div>
+</div>
+
+<div class="    ">
+    <div class="screen__background__shape screen__background__shape4"></div>
+    <div class="screen__background__shape screen__background__shape3"></div>		
+    <div class="screen__background__shape screen__background__shape2"></div>
+    <div class="screen__background__shape screen__background__shape1"></div>
+</div>	
+</div>
+</div>
+{% endblock content %}
+    
+
+
+
+
