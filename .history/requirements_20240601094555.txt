@@ -1,0 +1,4 @@
+Celery
+Django
+django-celery-beat
+djnago-celery
