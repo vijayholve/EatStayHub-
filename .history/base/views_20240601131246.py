@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.db.models import aggregates
 import random
 from .seed import register_user_to_send_mail,email_for_otp_verification
-from .tasks import fun1
+from .tasks import fun
 def home(request):
     q=request.POST.get("q") if request.POST.get("q") != None else ''
     users=User.objects.all()
