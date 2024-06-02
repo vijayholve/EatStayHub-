@@ -1,0 +1,5 @@
+{% extends "main.html" %}
+
+{% block css_content %}
+{% endblock css_content %}
+{% block conetnt %}{% endblock conetnt %}

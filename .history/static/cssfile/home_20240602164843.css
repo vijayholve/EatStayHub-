@@ -1,0 +1,98 @@
+/*	
+	Table Responsive
+	===================
+	Author: https://github.com/pablorgarcia
+ */
+
+ @charset "UTF-8";
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+ 
+ body {
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 300;
+   line-height: 1.42em;
+   color:#A7A1AE;
+   background-color:#5c5695;
+ }
+ 
+ .rest-name  {
+  font-size:3em; 
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #4DC3FA;
+  font: italic 5.2rem "Fira Sans", serif;
+  font-size:20px;
+}
+
+ 
+ h2 {
+   font-size:1em; 
+   font-weight: 300;
+   text-align: center;
+   display: block;
+   line-height:1em;
+   padding-bottom: 2em;
+   color: #FB667A;
+   font: italic 1.2rem "Fira Sans", serif;
+ }
+ 
+ h2 a {
+   font-weight: 700;
+   text-transform: uppercase;
+   color: #FB667A;
+   text-decoration: none;
+ }
+ 
+ .blue { color: #185875; }
+ .yellow { color: #FFF842; }
+
+
+ .image{
+
+	 height:100%;
+	 width:110px;
+   
+ }  
+ .image-restaurant img{ 
+  width: 150px;
+	 height:200px;
+  box-shadow: 2px 3px 17px gray;
+ align-items:center;
+	 margin:0 43%;
+	 border:2px solid rgb(53, 146, 167);
+ }
+
+#box img{
+	width:250px;
+	
+}
+.dishes h4{
+	display:inline;
+	margin:90px;
+}
+.tabbar div{
+	display:inline;
+	
+}
+.tabbar .logos{
+	margin-left:800px;
+}
+
+.main-container{
+	display:inline-block
+}
+.container-box{
+	display:inherit;
+	border:2px solid black;
+	margin:20px;
+	background-color:grey;
+	height:350px;
+	transition:1s;
+	/* transform:scale; */
+}
+.container-box:hover{
+	box-shadow: 20 10 19px skyblue;
+	padding:5px;
+  
+}

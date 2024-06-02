@@ -1,0 +1,14 @@
+.navigation_bar{
+    border:2px solid blanchedalmond;
+    height: 39px;
+    width:100%;
+
+
+}
+.navigation_bar div {
+    display: inline;
+    margin:30px;
+    border:1px solid black;
+    border-radius: 5px;
+    background-color: aqua;
+}

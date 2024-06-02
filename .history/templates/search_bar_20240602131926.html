@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cssfiles/search_bar.css' %}?v={{time}}">
+
+
+<div class="search-box">
+    <form>
+    
+    <input type="text" class="input-search" name="q" placeholder="Type to Search...">
+    <button class="button-85" role="button">submit</button>
+    </form>
+  </div>
+
+{% endblock conetnt %}
