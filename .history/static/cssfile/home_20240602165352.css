@@ -89,11 +89,11 @@
 	background-color:grey;
 	height:350px;
 	transition:1s ;
+	transform:rotate(+);
 }
 .container-box:hover{
 	box-shadow: 20 10 19px skyblue;
 	padding:5px;
   background-color: #FFF842;
-transform:rotate(-5deg);
-	margin-bottom:12px;
+
 }
