@@ -1,15 +1,15 @@
 from faker import Faker
 import random
-from django.contrib.auth.models import User
+from django.contrib.auth.models import 
 from .data import indian_dishes
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import hotel,dish,restaurants
 import os,glob
 
-hotel_obj=hotel.objects.get(id=2)
-users=User.objects.all()
-user_list=list(users)
+hotel_obj=hotel.objects.get(id=1)
+=.objects.all()
+_list=list()
 def seed_fun(n):
     for _ in range(n):
         fake=Faker()
@@ -19,11 +19,11 @@ def seed_fun(n):
                 restaurantName=restaurantName1,
                 locations=location,
                 hotel=hotel_obj,
-                user=random.choice(user_list)
+                =random.choice(_list)
         )
 def upload_image_in_restaurants():
     restaurants_obj=restaurants.objects.all()
-    files=glob.glob(os.path.join(rf"C:\Users\Vijay\django_pro\hotels\media\restaurant_images","*"))
+    files=glob.glob(os.path.join(rf"C:\s\Vijay\django_pro\hotels\media\restaurant_images","*"))
     for i,restaurant in enumerate(restaurants_obj):
         restaurant.image=files[i]
         restaurant.save()
@@ -39,7 +39,7 @@ def seed_dish():
                 description=description,
                 price=random.randint(100,999),
                 restaurants=rest,
-                user=random.choice(user_list),
+                =random.choice(_list),
                 hotel=hotel_obj            
             )
 def seed_dish_delete():
@@ -48,8 +48,8 @@ def seed_dish_delete():
         for dish in rest.dish_set.all():
             dish.delete()
             
-def register_user_to_send_mail(receiver_email,fullname):
-    hotel_obj=hotel.objects.get(id=2)
+def register__to_send_mail(receiver_email,fullname):
+    hotel_obj=hotel.objects.get(id=1)
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""
@@ -69,7 +69,7 @@ Best regards,
 Vijay Gholve
 {hotel_name} Team
 """   
-    sender=settings.EMAIL_HOST_USER
+    sender=settings.EMAIL_HOST_
     try:
         send_mail(subject,email_content,sender,receiver_email)
     except Exception as e:
@@ -78,7 +78,7 @@ Vijay Gholve
 
 
 def email_for_otp_verification(receiver_email,fullname,otp):
-    hotel_obj=hotel.objects.get(id=2)
+    hotel_obj=hotel.objects.get(id=1)
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""
@@ -86,14 +86,19 @@ Subject: Welcome to {hotel_name} – Your Account is Ready!
 
 Dear {fullname},
 
-hii
+Thank you for choosing our services. To complete your verification process, please use the One-Time Password (OTP) provided below:
 
+Your OTP Code: [{otp}]
+
+This OTP is valid for the next 10 minutes. Please enter it on the verification page to proceed.
+
+If you did not request this verification, please ignore this email or contact our support team immediately.
 
 Best regards,
 Vijay Gholve
 {hotel_name} Team
 """   
-    sender=settings.EMAIL_HOST_USER
+    sender=settings.EMAIL_HOST_
     try:
         send_mail(subject,email_content,sender,receiver_email)
     except Exception as e:
@@ -102,7 +107,7 @@ Vijay Gholve
     
 def upload_images():
     dishes=dish.objects.all()
-    director=rf"C:\Users\Vijay\django_pro\hotels\media\images"
+    director=rf"C:\s\Vijay\django_pro\hotels\media\images"
     files=glob.glob(os.path.join(director,"*"))
     a=""
     for obj in dishes:
@@ -115,15 +120,16 @@ def upload_images():
                     obj.dishImage=f
                     obj.save() 
 
-hotel_obj=hotel.objects.get(id=2)
+hotel_obj=hotel.objects.get(id=1)
 def send_mail_to_all_seed():
     hotel_name=hotel_obj.name
+    
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
-    for i in users:
+    for  in s:
         email_content = f"""
     Subject: Welcome to {hotel_name} – Your Account is Ready!
 
-    Dear {i.username},
+    Dear {.name},
 
     Thank you for choosing our services. To complete your verification process, please use the One-Time Password (OTP) provided below:
 
@@ -137,17 +143,10 @@ def send_mail_to_all_seed():
     Vijay Gholve
     {hotel_name} Team
     """  
-        receipts_list=[i.email]
-        sender=settings.EMAIL_HOST_USER
+        sender=settings.EMAIL_HOST_
         try:
-            send_mail(subject,email_content,sender,receipts_list)
+            send_mail(subject,email_content,sender,.email)
         except Exception as e:
-        # message.error)
+            # message.error)
             print(e)
-            
-def user_delete_seed():
-    for user in users:
-        if user.username is not 'jay' and user.id is not None:
-            user.delete()
-        
          

@@ -97,7 +97,7 @@ def logout_page(request):
     return redirect("login-page")
 @login_required(login_url="login-page ")
 def create_restaurant(request):
-    hotel_obj=hotel.objects.get(id=2)
+    hotel_obj=hotel.objects.get(id=1)
     # form=restaurant_form()
     if request.method == "POST":
         restaurantName=request.POST.get("restaurantName")

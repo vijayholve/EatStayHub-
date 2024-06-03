@@ -78,7 +78,7 @@ Vijay Gholve
 
 
 def email_for_otp_verification(receiver_email,fullname,otp):
-    hotel_obj=hotel.objects.get(id=2)
+    hotel_obj=hotel.objects.get(id=1)
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""

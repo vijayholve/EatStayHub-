@@ -7,9 +7,9 @@ from django.core.mail import send_mail
 from .models import hotel,dish,restaurants
 import os,glob
 
-hotel_obj=hotel.objects.get(id=2)
-users=User.objects.all()
-user_list=list(users)
+hotel_obj=hotel.objects.get(id=1)
+user=User.objects.all()
+user_list=list(user)
 def seed_fun(n):
     for _ in range(n):
         fake=Faker()
@@ -49,7 +49,7 @@ def seed_dish_delete():
             dish.delete()
             
 def register_user_to_send_mail(receiver_email,fullname):
-    hotel_obj=hotel.objects.get(id=2)
+    hotel_obj=hotel.objects.get(id=1)
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""
@@ -78,7 +78,7 @@ Vijay Gholve
 
 
 def email_for_otp_verification(receiver_email,fullname,otp):
-    hotel_obj=hotel.objects.get(id=2)
+    hotel_obj=hotel.objects.get(id=1)
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""
@@ -86,8 +86,13 @@ Subject: Welcome to {hotel_name} – Your Account is Ready!
 
 Dear {fullname},
 
-hii
+Thank you for choosing our services. To complete your verification process, please use the One-Time Password (OTP) provided below:
 
+Your OTP Code: [{otp}]
+
+This OTP is valid for the next 10 minutes. Please enter it on the verification page to proceed.
+
+If you did not request this verification, please ignore this email or contact our support team immediately.
 
 Best regards,
 Vijay Gholve
@@ -115,15 +120,16 @@ def upload_images():
                     obj.dishImage=f
                     obj.save() 
 
-hotel_obj=hotel.objects.get(id=2)
+hotel_obj=hotel.objects.get(id=1)
 def send_mail_to_all_seed():
     hotel_name=hotel_obj.name
+    
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
-    for i in users:
+    for user in user:
         email_content = f"""
     Subject: Welcome to {hotel_name} – Your Account is Ready!
 
-    Dear {i.username},
+    Dear {user.username},
 
     Thank you for choosing our services. To complete your verification process, please use the One-Time Password (OTP) provided below:
 
@@ -137,17 +143,10 @@ def send_mail_to_all_seed():
     Vijay Gholve
     {hotel_name} Team
     """  
-        receipts_list=[i.email]
         sender=settings.EMAIL_HOST_USER
         try:
-            send_mail(subject,email_content,sender,receipts_list)
+            send_mail(subject,email_content,sender,user.email)
         except Exception as e:
-        # message.error)
+            # message.error)
             print(e)
-            
-def user_delete_seed():
-    for user in users:
-        if user.username is not 'jay' and user.id is not None:
-            user.delete()
-        
          

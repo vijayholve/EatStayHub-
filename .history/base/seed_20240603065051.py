@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from .models import hotel,dish,restaurants
 import os,glob
 
-hotel_obj=hotel.objects.get(id=2)
+hotel_obj=hotel.objects.get(id=1)
 users=User.objects.all()
 user_list=list(users)
 def seed_fun(n):
@@ -49,7 +49,7 @@ def seed_dish_delete():
             dish.delete()
             
 def register_user_to_send_mail(receiver_email,fullname):
-    hotel_obj=hotel.objects.get(id=2)
+    hotel_obj=hotel.objects.get(id=1)
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""
@@ -78,7 +78,7 @@ Vijay Gholve
 
 
 def email_for_otp_verification(receiver_email,fullname,otp):
-    hotel_obj=hotel.objects.get(id=2)
+    hotel_obj=hotel.objects.get(id=1)
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""
@@ -115,7 +115,7 @@ def upload_images():
                     obj.dishImage=f
                     obj.save() 
 
-hotel_obj=hotel.objects.get(id=2)
+hotel_obj=hotel.objects.get(id=1)
 def send_mail_to_all_seed():
     hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
@@ -145,9 +145,10 @@ def send_mail_to_all_seed():
         # message.error)
             print(e)
             
-def user_delete_seed():
+def user_delete():
+    useremail=None
     for user in users:
-        if user.username is not 'jay' and user.id is not None:
-            user.delete()
+
+        useremail=[user.email]
         
          
