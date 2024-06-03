@@ -1,0 +1,99 @@
+{% extends "main.html" %}
+{% load static %}
+{% block css_content %}
+  <link rel="stylesheet" href="{%  static 'cssfile/restaurant_data.css' %}?v={{ time }}">
+{% endblock css_content %}
+  
+{% block content %}
+{% include "navbar.html"   %}
+<div class="restaurant-details">
+     <div class="restaurant_box">
+      <div class="restaurant-image">
+        <img src="/media/{{restaurant.image}}" alt="">
+      </div>
+    
+    <h1>{{restaurant.restaurantName}}</h1>
+    
+     <h3>{{restaurant.locations}}</h3>
+     <
+    <hr>    
+  </div>
+
+
+{% for message in messages %}
+      <li>{{message}}</li>
+{% endfor%}
+
+{% include 'search_bar.html' %}
+<form>
+ 
+<div class="send_value" name="under_value"></div>
+</form>
+<div class="choose-budget">
+  <input type="submit" value="200" class="v200" name="v200">
+  <input type="submit" value="400" class="v400" name="v400">
+  <input type="submit" value="600"  class="v600" name="v600">
+  <input type="submit" value="800" class="v800" name="v800">
+  <input type="submit" value="1000" class="v1000" name="0v1000">
+</div>
+{% if dishes.count == 0 %}
+<h2><a href="{%  url 'restaurant-data' restaurant.id %}">show all</a></h2>
+
+{% endif %}
+  
+{% if dishes.count != 0 %}
+    
+<div class="screen_background">
+        <table class="container" >
+            <thead class="thead-dark">
+              <tr>
+                <th class="no">No</th>
+                <th scope="col">dish name</th>
+                <th scope="col">Image</th>
+                {% comment %} <th scope="col">decriptions</th> {% endcomment %}
+                 
+                 {% if request.user.is_authenticated %}
+                <th scope="col">operations</th>
+                {% endif %}
+                <th class="no" scope="col">price</th>
+
+              </tr> 
+            </thead>
+            
+          {% endif %}
+            <tbody>
+              {% for dish in dishes %}
+              
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td><h3>{{dish.dishName}}</h3></td>
+                <td>
+                  <div id="box">
+                  <img src="/media/{{dish.dishImage}}/" alt="{{dish.dishImage}}">
+                  </div>
+                </td>
+                {% comment %} <td>{{dish.description}}</td>{% endcomment %}
+                {% if request.user.is_authenticated %} 
+                <td  >  
+                  <div class="operation">
+                 <button class="button-85"><a href="{% url 'dish-update' dish.id %}">update</a></button><br>
+                 <button class="button-85"><a href="{% url 'dish-delete' dish.id %}">delete</a></button>
+                  </div>
+                </td>
+                {% endif %}
+                <td>{{dish.price}}</td>
+
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+      </div>
+ </div>
+ <h1><a href="{% url 'dish-create' restaurant.id %}">Add Dish</a></h1>
+
+<script src=" {% static 'scripts/restaurant_data.js' %}"></script>
+{% endblock content %}
+    
+
+

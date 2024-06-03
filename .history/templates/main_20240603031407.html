@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <link rel="stylesheet" href="{% static 'cssfile/button_file.css' %}"> 
+    <link rel="stylesheet" href="{% static 'cssfile/search_bar.css' %}?v={{ time }}">
+    <link rel="stylesheet" href="{% static 'cssfile/navigation_bar.css' %}>
+?v={{ time }}"
+    {% comment %} <link rel="stylesheet" href="{% static 'cssfile/restaurand_data.css' %}"> {% endcomment %}
+
+    {% block css_content %}
+        
+    {% endblock css_content %}
+        
+
+</head>
+
+<body>
+{% block content %}
+    
+{% endblock content %}
+    </body>
+</html>
