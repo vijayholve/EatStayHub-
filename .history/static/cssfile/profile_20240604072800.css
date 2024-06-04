@@ -1,0 +1,17 @@
+.main-profile{
+    background-color:aqua;
+    width:100%;
+    height:1000px;
+    
+}
+
+.main-profile .profile-box{
+    background-color: aquamarine;
+    margin:1;
+    width:70%;
+    height:60%;
+    border:1px solid black;
+    align-items:center;
+    
+    
+}

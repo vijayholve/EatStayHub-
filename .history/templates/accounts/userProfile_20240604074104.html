@@ -1,0 +1,16 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'cssfile/profile.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+<div class="main-profile">
+    <div class="profile-box">
+        <h1>@{{profile.user.username}}</h1>
+        <div><img src="/media/{{profile.profilePicture}}/" alt=""></div>
+        <h2>{{profile.city}}</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint magnam delectus quis, temporibus soluta a nemo quae, cum error consequuntur ea alias laudantium nostrum corporis molestiae libero ab id sed.</p>
+        <h2>BIo</h2>
+    </div>
+</div>
+{% endblock content %}

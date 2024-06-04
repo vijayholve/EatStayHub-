@@ -1,0 +1,19 @@
+body{
+    width: max-content;
+}
+
+.main-profile .profile-box{
+    background-color: aquamarine;
+    margin:10% ; ;
+    width:86%;
+    height:75%;
+    border:1px solid black;
+    align-items:center; 
+    
+    
+}
+img{
+    width:250px;
+    margin-left: 20px;
+    margin-bottom: 20px;;
+}

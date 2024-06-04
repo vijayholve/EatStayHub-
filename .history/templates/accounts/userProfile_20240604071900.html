@@ -1,0 +1,11 @@
+{% extends "base/main.html" %}
+{% block  %}{% endblock  %}
+{% block content %}
+<div class="main-profile">
+    <div class="profile-box">
+        <h1>{{profile.user.username}}</h1>
+        <h2>{{profile.city}}</h2>
+        <div><img src="/media/{{profile.profilePicture}}/" alt=""></div>
+    </div>
+</div>
+{% endblock content %}

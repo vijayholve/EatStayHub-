@@ -1,0 +1,13 @@
+{% extends "base/main.html" %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static '' %}?v={{}}">
+{% endblock css_content %}
+{% block content %}
+<div class="main-profile">
+    <div class="profile-box">
+        <h1>{{profile.user.username}}</h1>
+        <h2>{{profile.city}}</h2>
+        <div><img src="/media/{{profile.profilePicture}}/" alt=""></div>
+    </div>
+</div>
+{% endblock content %}
