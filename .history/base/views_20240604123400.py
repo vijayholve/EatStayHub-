@@ -159,7 +159,7 @@ def restaurant_data(request,pk):
     if q is not None :
         dishes=dishes.filter(Q(dishName__icontains=q) |
                              Q(description__icontains=q) |
-                             Q(price__lte=q)    
+                             Q(price__lte=q) 
                              )
     
     if under_value := request.GET.get('count') is not None:

@@ -171,7 +171,7 @@ def restaurant_data(request,pk):
 def delete_dish(request,pk):
     dish_obj=dish.objects.get(id=pk)
     restaurant=dish_obj.restaurants
-    dish_obj.delete()
+    dish_obj.delete()comm
     return redirect("restaurant-data",pk=restaurant.id)
 @login_required(login_url="login-page")
 def update_dish(request,pk):

@@ -81,8 +81,7 @@
 
 .main-container{
 	display:flex;
-   flex-direction: row;
-   flex-wrap: wrap;
+   fle;
 }
 .container-box{
 	display:inherit;
