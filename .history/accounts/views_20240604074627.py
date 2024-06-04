@@ -7,5 +7,5 @@ def profile(request,pk):
     user=User.objects.get(id=pk)
     restaurant=user.restaurants_set.all()
     profile=user.userprofile
-    content={"user":user,"profile":profile,"restaurant":restaurant}
+    content={"user":user,"profile":profile,"restau"}
     return render(request,"accounts/userProfile.html",content)
