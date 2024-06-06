@@ -1,7 +1,8 @@
-.navigation_bar{
+.navigation_bar {
     border:2px solid blanchedalmond;
     height: 39px;
     width:100%;
+    background-color: aquamarine;
 }
 .navigation_bar div {
     display: inline;

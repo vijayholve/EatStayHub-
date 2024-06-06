@@ -1,0 +1,31 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+        <div>
+            {% csrf_token %}
+            <input type="text" name="city">
+            <input type="file" name="image" id="">
+            <input type="date" name="dob" id="">
+            <input type="submit" name="" id="">
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+

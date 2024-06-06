@@ -1,0 +1,30 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'cssfile/profile.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+<div class="main-profile">
+    <div class="profile-box">
+        <h1>@{{profile.user.username}}</h1>
+        <div><img src="/media/{{profile.profilePicture}}/" alt=""></div>
+        <h2>{{profile.city}}</h2>
+        <p>Lorem ipsum dolor sit, ame   .</p>
+        <h2>BIo</h2>
+        <ol>
+        {% for rest in restaurant  %}
+           
+            <li>rest</li>
+          
+        {% endfor %}
+        
+        {% if restaurant.count is 0 %}
+            <h3><a href="{% url 'create-restaurant' }">add restaurant</h3>
+        {% endif %}
+            
+        </ol>
+
+        <h3><a href="{% url 'profile-update' profile.id %}">UPdate</a></h3>
+    </div>
+</div>
+{% endblock content %}
