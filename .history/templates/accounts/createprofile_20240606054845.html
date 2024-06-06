@@ -1,0 +1,20 @@
+{% extends "base/main.html" %}
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+        <select name="user" id="">
+            
+            {% for user in users  %}
+                <option value="">{{user}}</option>
+            {% endfor %}
+            
+                
+        </select>
+    </form>
+</div>
+
+
+
+{% endblock %}
+

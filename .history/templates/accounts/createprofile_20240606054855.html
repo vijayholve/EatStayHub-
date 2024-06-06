@@ -1,0 +1,26 @@
+{% extends "base/main.html" %}
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+        <select name="user" id="">
+            
+            {% for user in users  %}
+                <option value="">{{user}}</option>
+            {% endfor %}
+
+        </select>
+        <input type="text" value="{{profile.user.username}}" name="username">
+            <input type="text" value="{{profile.city}}" name="city">
+            <input type="file" value="{{profile.profilePicture}}" name="image" id="">
+            <input type="date" value="{{profile.dateOfBirth}}" name="dob" >
+            <div class="button-85">
+                <BUTTon>Submit</BUTTon>
+            </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
+
