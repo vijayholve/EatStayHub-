@@ -1,0 +1,39 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'room\home_room.css' %}?v={{time}}" >
+
+
+{% endblock css_content %}
+{% block content %}
+<div>
+<div>
+    <h1>rooms</h1>
+    <h3><a href="{% url 'create-room'%}">Create rOOm</a></h3>
+</div>  
+{% for room in rooms%}
+<div>
+    <h3>{{room.roomName}}</h3>
+    <h3>{{room.roomType}}</h3>
+    <h3>{{room.price}}</h3>
+    <div>    
+    <img src="/media/{{room.roomImage}}/" alt="">
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

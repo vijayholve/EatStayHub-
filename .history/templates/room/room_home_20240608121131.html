@@ -1,0 +1,37 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'C:\Users\Vijay\django_pro\hotels\static\room\home_room.css' %}">
+
+
+{% endblock css_content %}
+{% block content %}
+<div>
+    <h1>rooms</h1>
+    <h3><a href="{% url
+         'create-room'%}">Create rOOm</a></h3>
+</div>  
+{% for room in rooms%}
+<div>
+<h3>{{room.roomName}}</h3>
+    <h3>{{room.roomType}}</h3>
+<h3>{{room.price}}</h3>
+<img src="/media/{{room.roomImage}}/" alt="">
+</div>
+{% endfor %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

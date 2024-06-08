@@ -1,0 +1,13 @@
+body{
+    background-color: antiquewhite;
+    }
+    .room-image img{
+        width:130px;
+    }
+    .room-box{
+        display:flex;
+        padding:30px;
+        background-color:grey;
+        margin:30px;
+    }
+    .room-box

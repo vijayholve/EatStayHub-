@@ -1,0 +1,23 @@
+{% extends "base/main.html" %}
+{% block content %}
+<div>
+    <form method="POST" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        {{form}}
+        <div>
+            <input type="file" name="roomImage">
+        </div>
+        <div class="button-85">
+        <input type="submit" value="submit">
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
