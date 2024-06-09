@@ -1,0 +1,55 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'room\home_room.css' %}?v={{time}}" >
+
+
+{% endblock css_content %}
+{% block content %}
+<div class="room-container">
+<div>
+    
+    <h3><a href="{% url 'create-room'%}">Create rOOm</a></h3>
+</div>  
+{% for room in rooms%}
+<div class="room-box">
+    <div class="room-image">    
+        <img src="/media/{{room.roomImage}}/" alt="">
+    </div>
+        <div class="room-name">
+            <h1><a>{{room.roomName}}</a></h1>
+        </div> 
+        <div class="room-info">
+            <h3>{{room.roomType}}</h3>
+            <h3>₹{{room.price}}</h3>
+            <h3>{{room.location}}</h3>
+            
+            {% if room.avalabel is True %}
+            <h3>✅</h3>
+            {% else %}
+            <h3>❎</h3>
+            {% endif %}
+                
+    
+        </div>
+        <div>
+      </div>
+</div>
+</div>
+{% endfor %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
