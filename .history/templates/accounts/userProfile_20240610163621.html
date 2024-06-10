@@ -1,0 +1,46 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'account/profile.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+{% include 'base/navbar.html' %}
+<div class="main-profile">
+    <div class="profile-box">
+        <h1>@{{profile.user.username}}</h1>
+        <div><img src="/media/{{profile.profilePicture}}/" alt=""></div>
+        <h2>{{profile.city}}</h2>
+        <p>Lorem ipsum dolor sit, ame   .</p>
+        <h2>BIo</h2>
+        <ol>
+        {% for rest in restaurant  %}
+           
+            <li>rest</li>
+          
+        {% endfor %}    
+        
+        {% if restaurant.count is 0 %}  
+            <h3><a href="{% url 'restaurant-create' %}">create restaurant </a></h3>
+        {% endif %}
+        
+        {% if profile.dateOfBirth %}
+            <h3>{{profile.dateOfBirth}}</h3>
+        {% endif %}
+                
+        </ol>
+
+        <h3><a href="{% url 'profile-update' profile.id %}">UPdate</a></h3>
+    
+    {% comment %} {% for book in  booked %}
+     <h3>{{book.start_date}}</h3>        
+    {% endfor %}
+         {% endcomment %}
+         <h2></h2>
+         {% for room in rooms  %}
+            <h3>{{room.roomName}}</h3>
+         {% endfor %}
+            
+    </div>
+
+</div>
+{% endblock content %}

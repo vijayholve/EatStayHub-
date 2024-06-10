@@ -1,0 +1,27 @@
+{% extends "base/main.html" %}
+{% block content %}
+
+<div class="main-box">
+    <h2>{{book.room}}</h2>
+    {% for book in booked  %}
+    Start Date :{{book.start_date}}
+    End Date : {{book.end}}
+    {% endfor %}
+        
+</div>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
