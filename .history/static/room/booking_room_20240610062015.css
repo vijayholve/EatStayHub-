@@ -1,0 +1,19 @@
+body{
+    background-color: aquamarine;
+}
+.main-container{
+    display: flex;
+    width:700px;
+    height: 450px;
+    margin: 100px auto;
+    border: 2px solid green;
+    flex-direction: row;
+    
+
+}
+.data img{
+    width:35%;
+
+
+  
+}

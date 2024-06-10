@@ -1,0 +1,36 @@
+{% extends "base/main.html" %}
+
+{% block content %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token%}
+        <img src="/media/{{room.roomImage}}" alt="">
+        <h2>{{room.roomNAme}}</h2>
+        <h3>Type :{{room.roomType}}</h3>
+        <h3>location :{{room.location}}</h3>
+       <h4> {{room.price}} and gst of 18% is {{gst}} </h4>
+       <h3>total Cost :{{total}}</h3>
+       <label for="startdate">Start date</label>
+        <input type="date" name="startdate"><br>
+        
+        <input type="date" name="enddate"><br>
+        <input type="submit" value="{{room}}"><br>
+
+    </form>
+</div>
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+

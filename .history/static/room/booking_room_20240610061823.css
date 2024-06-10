@@ -1,0 +1,14 @@
+body{
+    background-color: aquamarine;
+}
+.main-container{
+    display: flex;
+    width:300px;
+    margin: 120px auto;
+    border: 2px s;
+}
+.data img{
+    width:35%;
+
+  
+}

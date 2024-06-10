@@ -1,0 +1,51 @@
+{% extends "base/main.html" %}
+{% load static  %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'room/booking_room.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+<div class="container">
+    <div class="main-container">
+        <form method="GET" action="">
+            {% csrf_token%}
+        <div class="data">
+            <div class="image">  
+                <img src="/media/{{room.roomImage}}" alt="">
+            </div>
+            <div class="price">
+                <h2>{{room.roomNAme}}</h2>
+                <h3>Type :{{room.roomType}}</h3>
+            <h3>location :{{room.location}}</h3>
+            <h4> {{room.price}} and gst of 18% is {{gst}} </h4>
+            <h3>total Cost :{{total}}</h3>
+            </div>
+            <div class="sedate">
+                <label for="startdate">Start date :</label>
+                <input type="date" name="startdate"><br>
+                <label for="enddate">End Date :</label>
+                <input type="date" name="enddate"><br>
+
+            </form>
+            <for
+                <input type="submit" value="Book Room at {{total}}"><br>
+            </div>
+            <h3>{{duration}}</h3>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+

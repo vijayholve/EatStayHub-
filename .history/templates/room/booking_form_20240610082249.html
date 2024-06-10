@@ -1,0 +1,54 @@
+{% extends "base/main.html" %}
+{% load static  %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'room/booking_room.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+<div class="container">
+    <div class="main-container">
+        <form method="POST" action="">
+            {% csrf_token%}
+            <div class="data">
+                <div class="image">  
+                    <img src="/media/{{room.roomImage}}" alt="">
+                </div>
+                <div class="all">
+                    <h2>{{room.roomNAme}}</h2>
+                    <h3>Type: {{room.roomType}}</h3>
+                    <h3>Location: {{room.location}}</h3>
+                    <h4>Price: <div class="price">{{room.price}}</div> and GST of 18% for 1 Day</h4>
+                    <h3>Total Cost: <div class="total"></div></h3>
+                </div>
+                <div class="sedate">
+                    <label for="startdate">Start date:</label>
+                    <input type="date" id="startdate" name="startdate" onchange="calculateDuration()"><br>
+                    <label for="enddate">End Date:</label>
+                    <input type="date" id="enddate" name="enddate" onchange="calculateDuration()"><br>
+                    <h3 id="duration" name="duration"></h3>
+                    <h2>Total is <div class="total"></div></h2>
+                </div>
+                <input type="submit" ><br>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function calculateDuration() {
+    var startdate = document.getElementById("startdate").value;
+    var enddate = document.getElementById("enddate").value;
+    if (startdate && enddate) {
+        let price=document.querySelector(".price").value;   
+        console.log(price)
+        var start = new Date(startdate);
+        var end = new Date(enddate);
+        var duration = (end - start) / (1000 * 3600 * 24);
+        let total= (8*price+((price/100)*18*7))
+        document.getElementById("duration").innerHTML = "Duration: " + duration + " days";
+        document.querySelector(".total").innerHTML="Book Room at "+ total;
+        console.log(total)
+    }
+}
+</script>
+
+{% endblock content %}
