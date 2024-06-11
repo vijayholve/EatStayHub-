@@ -52,7 +52,7 @@ def delete_room(request,pk):
     return render(request,"room/delete.html")
 from django.db import IntegrityError
 
-def booking_room(request, pk):  # sourcery skip: avoid-builtin-shadow
+def booking_room(request, pk):
     room = Room.objects.get(id=pk)
     if request.method == "POST":
         startdate = request.POST.get("startdate")
@@ -74,11 +74,10 @@ def booking_room(request, pk):  # sourcery skip: avoid-builtin-shadow
                     duration=duration 
                 )
                 book.save()
-                receiver_mail=book.user.email
+                receiver_mail=request.user.email
                 print(receiver_mail)
                 id=book.id
-                print(id)
-                send_mail_booking_task.delay(receiver_mail, pk,id)
+                send_mail_booking_task.delay(receiver_mail, pk, book.id)
                 return redirect("home-room")
             except IntegrityError as e:
                 # Handle the IntegrityError, maybe by showing an error message to the user

@@ -1,16 +1,12 @@
-from .models import Room, Booking   
-from .seed import send_mail_to_user_after_booking
 from celery import shared_task
-import logging
-
-logger = logging.getLogger(__name__)
+from .models import Room, Booking
+from .seed import send_mail_to_user_after_booking
 
 @shared_task
 def send_mail_booking_task(receiver_mail, room_id, booking_id):
     try:
-        logger.info(f"Sending email to {receiver_mail} for room {room_id} and booking {booking_id}")
         send_mail_to_user_after_booking(receiver_mail, room_id, booking_id)
-        logger.info("Email sending task done")
+        print("Email sending task done")
         return "DONE"
     except Room.DoesNotExist:
         print("Room not found")
