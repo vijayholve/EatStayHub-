@@ -1,0 +1,34 @@
+{% extends "base/main.html" %}
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <img src="/media/{{dish.dishImage}}" alt="">
+
+        <h2>{{dish.dishName}}</h2>
+        <h2>{{dish.price}}</h2>
+        <h4>{{dish.description}}</h4>
+        <h4>{{dish.restaurants}}</h4>
+        <h2>{% dish.price * 0.10 %%}</h2>
+
+       <label for="location">Your Loaction</label><br>
+        <input type="text" name="location" id=""> <br>
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
