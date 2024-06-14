@@ -1,0 +1,35 @@
+{% extends "base/main.html" %}
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <img src="/media/{{dish.dishImage}}" alt="">
+
+        <h2>Dish: {{dish.dishName}}</h2>
+        <h2>Price: {{dish.price}}</h2>
+        <h4>Restaurant: {{dish.restaurants}}</h4>
+        <h4>description: {{dish.description}}</h4>
+        <h2>delivery Charges: {{delivery}}</h2>
+        <h2>Toatl is {{total}} including 18% gst    </h2>
+       <label for="location">Your Loaction</label><br>
+        <input type="text" name="location" id=""> <br>
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+

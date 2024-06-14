@@ -1,0 +1,27 @@
+{% extends "base/main.html" %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'restaurant/orderdish.css' %}?v={{time}}">
+
+{% endblock css_content %}
+
+{% block content %}
+<div class="box-container">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <img src="/media/{{dish.dishImage}}" alt="">
+        <h2>Dish: {{dish.dishName}}</h2>
+        <h2>Price: {{dish.price}}</h2>
+        <h4>Restaurant: {{dish.restaurants}}</h4>
+        <h4>description: {{dish.description}}</h4>
+        <h2>delivery Charges: {{delivery}}</h2>
+        <h2>Total is {{total}} </h2><p>(including 18% gst)</p>
+       <label for="location">Your Loaction</label><br>
+        <input type="text" name="location" id=""> <br>
+        <div class="button-85">
+            <button></button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
