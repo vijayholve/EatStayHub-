@@ -93,7 +93,7 @@ def booking_room(request, pk):  # sourcery skip: avoid-builtin-shadow
                 print(receiver_mail)
                 id=book.id
                 print(id)
-                send_mail_to_user_after_booking(pk,id)
+                send_mail_to_user_after_booking()
                 # send_mail_booking_task.delay( pk,id)
                 return redirect("home-room")
             except IntegrityError as e:

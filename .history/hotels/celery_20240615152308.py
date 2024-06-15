@@ -14,7 +14,7 @@ app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
     'send-meail-every-day-at-8': {
-        'task': 'base.tasks.send_mail_booking_task',
+        'task': 'base.tasks.send_mail_to_all_task',
         'schedule': crontab(hour=14, minute=20),
     }
 }

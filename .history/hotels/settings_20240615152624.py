@@ -167,8 +167,4 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-task_serializer = 'json'
-result_serializer = 'json'
-timezone = 'Asia/Kolkata'
-accept_content = ['json']
-result_backend = 'django-db'
+

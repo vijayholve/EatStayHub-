@@ -59,7 +59,7 @@
                   </td>
                 {% comment %} <td>{{dish.description}}</td>{% endcomment %}
                  {% if request.user.is_staff or request.user is dish.user %}
-                  <td>                                                                                                                            
+                  <td>
                         <div class="operation">
                         <button class="button-85"><a href="{% url 'dish-update' dish.id %}">update</a></button><br>
                         <button class="button-85"><a href="{% url 'dish-delete' dish.id %}">delete</a></button>
