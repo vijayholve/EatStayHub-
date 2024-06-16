@@ -1,0 +1,40 @@
+
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'cssfile/navigation_bar.css'%}">
+
+{% endblock css_content %}
+{% block content %}
+<nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'home' %}">About</a></li>
+      <li class="dropdown">
+        <a href="#0" c data-toggle="dropdown" data-target="dropdown" role="button" aria-haspopup="true" aria-expanded="false">profile</a>
+      </li>
+      <li class="dropdown">
+        <a href="#0" class="dropdown-toggle" data-toggle="dropdown" data-target="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+       
+      </li>
+      <li><a href="#0">Contact</a></li>
+      {% if request.user.is_authenticated %}
+    
+        <div class="button-85">
+            <button >
+                <a href="{% url 'restaurant-create' %}">Create restaurant</a>
+            </button>    
+          </div>
+          <div class="button-85">
+            <button  role="button">
+                <a href="{% url 'logout-page' %}"  style="color:white" >logout</a>
+                </button>
+              </div>
+      
+    {% else %}
+        <button class="button-85" role="button"><a href="{% url 'login-page' %}">login</a></button>
+    
+    {% endif %}
+    </ul>
+  </nav>
+{% endblock content%}

@@ -1,0 +1,24 @@
+
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'cssfile/navigation_bar.css'%}?v={{ time }}">
+
+{% endblock css_content %}
+{% block content %}
+<nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'home' %}">About</a></li>
+      <li class="dropdown">
+        <a href="{% url 'profile'reques %}" c data-toggle="dropdown" data-target="dropdown" role="button" aria-haspopup="true" aria-expanded="false">profile</a>
+      </li>
+      <li class="dropdown">
+        <a href="#0" class="dropdown-toggle" data-toggle="dropdown" data-target="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+       
+      </li>
+      <li><a href="#0">Contact</a></li>
+  
+    </ul>
+  </nav>
+{% endblock content%}
