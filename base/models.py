@@ -16,7 +16,7 @@ class restaurants(models.Model):
     restaurantName=models.CharField(max_length=200)
     locations=models.CharField(max_length=200)
     image=models.FileField(upload_to="restaurant_images",null="True",blank=True)
-    hotel=models.ForeignKey(hotel,on_delete=models.CASCADE,null=True,blank=True)
+    hotel=models.ForeignKey(hotel,on_delete=models.SET_NULL,null=True,blank=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     def __str__(self):
         return self.restaurantName
@@ -29,7 +29,7 @@ class dish(models.Model):
     restaurants=models.ForeignKey(restaurants,on_delete=models.SET_NULL,null=True,blank= True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="dishes")
     dishImage=models.FileField(upload_to="images/",max_length=250,null=True,blank=True)
-    hotel=models.ForeignKey(hotel,on_delete=models.CASCADE,null=True,blank=True)
+    hotel=models.ForeignKey(hotel,on_delete=models.SET_NULL,null=True,blank=True)
     def __str__(self):
         return self.dishName
     class Meta:

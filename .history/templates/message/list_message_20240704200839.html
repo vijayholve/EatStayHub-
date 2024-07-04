@@ -1,0 +1,11 @@
+{% extends "base/main.html" %}
+{% block content %}
+<div class="message-containner">
+    <div class="all-message-user">
+       {% for obj  in message_obj. %}
+       <div>{{obj.sender}}</div>
+       {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
