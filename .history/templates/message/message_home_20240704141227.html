@@ -1,0 +1,41 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'message/message_home.css' %}?v={{Time}}">
+{% endblock css_content %}
+{% block content %}
+<div class="message-main">
+    <div class="message-user">
+        {% include "base/search_bar.html" %}
+           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium excepturi itaque amet, cum alias totam in, fuga, culpa enim sit eos debitis illo! Tempore, delectus consectetur ullam odio veniam eos.
+    </div>
+    
+    {% for obj in  %}
+        
+    {% endfor %}
+        
+    <div class="message-box">
+      <div class="sender-profile">{{obj.sender.username}}</div>x    
+      <div class="message-sender-receiver">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis quis quaerat, cum veniam nemo placeat similique atque. Laborum minus delectus accusamus quam. At officia fuga quis nisi ex ipsam deleniti.
+      </div>
+      <div>{{obj.rec}}</div>
+    </div>
+    <div class="message-send">
+        <form  method="POST" action="" class="message-form">
+            {% csrf_token %}
+            <input type="text" placeholder="Enter your message here" name="message" class="message">
+            <input type="submit" class="message-btn">
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
