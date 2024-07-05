@@ -34,9 +34,7 @@ def restaurant_owner_reply(request,receiver_id , sender_id,rest_id):
     sender=User.objects.get(id=sender_id) 
     receiver=User.objects.get(id=receiver_id) 
     restaurant=restaurants.objects.get(id=rest_id)
-    message_obj=message.objects.filter(
-        Q(Q(sender=sender)  & Q(receiver=receiver)) | 
-        Q(Q(Q(sender=receiver)  & Q(receiver=sender)))).order_by("-id")
+    message_obj=message.objects.filter(Q(restaurant=restaurant) & Q(receiver=receiver) | Q(sender=sender))
     if request.method == "POST":
         message_text=request.POST.get("message")
         message_obj=message.objects.create(
