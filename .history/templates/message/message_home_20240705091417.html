@@ -1,0 +1,37 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'message/message_home.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+<div class="message-main">
+    <div><iframe src="message/message_bar.html" width="680" height="500" frameborder="0"></iframe></div>    <div class="message-box">
+        <div class="receiver-profile">{{receiver.username}}</div>
+        {% for obj in message_obj  %}
+        <div class="message-sender-receiver">
+            <div class="message-show">
+                <div class="sender-message-is">{{obj.text}}</div>
+                <div class="message-sender-message">{{obj.sender.username}}</div>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <div class="message-send">
+        <form  method="POST" action="" class="message-form">
+            {% csrf_token %}
+            <input type="text" placeholder="Enter your message here" name="message" class="message">
+            <input type="submit" class="message-btn">
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+

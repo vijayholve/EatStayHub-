@@ -1,0 +1,18 @@
+ <div class="message-user">
+        {% include "base/search_bar.html" %}
+        <div class="message-containner">
+            
+            {% if request.user is  %}
+                
+            {% endif %}
+                
+            <div class="all-message-user">
+                {% for sender  in sender_list %}
+                <div>{{sender.sender.username}}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    

@@ -1,0 +1,11 @@
+{% extends "base/main.html" %}
+{% block content %}
+<div class="message-containner">       
+    <div class="all-message-user">
+        {% for receiver  in receivers %}
+        <a href="receiver_id
+sender_id message-owner"></a><div>{{receiver.sender.username}}</div> 
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
