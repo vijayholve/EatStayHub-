@@ -6,7 +6,7 @@
         background-image:url("/media/{{img}}/")
     }
 </style>
-  <link rel="stylesheet" href="{%  static 'cssfile/home.css'%}?v={{time}}">
+  <link rel="stylesheet" href="{%  static 'cssfile/home.css'%}">
 {% endblock css_content %}
 
 {% block content %}
@@ -44,8 +44,7 @@
     <ul class="cards">
         <li>
           <a href="{% url 'restaurant-data' restaurant.id %}" class="card">
-            <img src="/media/{{restaurant.image}}/" alt="{{restarant.image}}" 
-            class="rest-image"> 
+            <img src="/media/{{restaurant.image}}/" alt="{{restarant.image}}" class=""> 
 
             <div class="card__overlay">
               <div class="card__header">

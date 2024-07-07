@@ -9,8 +9,7 @@ import os,glob
 
 hotel_obj=hotel.objects.get(id=3)
 users=User.objects.all()
-user_list=list(users) 
-
+user_list=list(users)
 def seed_fun(n):
     for _ in range(n):
         fake=Faker()
