@@ -53,7 +53,6 @@ liabrarias=[
     ]
 INSTALLED_APPS+=liabrarias
 MIDDLEWARE = [
-        'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
         "django.middleware.security.SecurityMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',

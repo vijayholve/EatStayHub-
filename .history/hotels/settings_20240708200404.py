@@ -53,7 +53,6 @@ liabrarias=[
     ]
 INSTALLED_APPS+=liabrarias
 MIDDLEWARE = [
-        'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
         "django.middleware.security.SecurityMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,17 +101,51 @@ WSGI_APPLICATION = 'hotels.wsgi.application'
 # }
 DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
 
+import environ
+import os
+
+env = environ.Env()
+environ.Env.read_env()  # Reads the .env file
+
+print("Database settings:")
+print("NAME:", env('DATABASE_NAME'))
+print("USER:", env('DATABASE_USER'))
+print("PASSWORD:", env('DATABASE_PASSWORD'))
+print("HOST:", env('DATABASE_HOST'))
+print("PORT:", env('DATABASE_PORT'))
+
+import environ
+import os
+
+env = environ.Env()
+environ.Env.read_env()  # Reads the .env file
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT', default='3306'),
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME':   'hotels',
+#         'USER': 'root',
+#         'PASSWORD':'vijay',
+#         'HOST':'localhost',
+#         'PORT':'3306',
+        
+#     }
+# }
 
-# import dj_database_url
-# DATABASES["default"]=dj_database_url.parse("postgresql://user_databse_user:ItGsxeYeqbYUdQLoLh8GsMGcjUHAXU7o@dpg-cpujmqqj1k6c738bgv8g-a.oregon-postgres.render.com/user_databse")
+
+# # import dj_database_url
+# # DATABASES["default"]=dj_database_url.parse("postgresql://user_databse_user:ItGsxeYeqbYUdQLoLh8GsMGcjUHAXU7o@dpg-cpujmqqj1k6c738bgv8g-a.oregon-postgres.render.com/user_databse")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
