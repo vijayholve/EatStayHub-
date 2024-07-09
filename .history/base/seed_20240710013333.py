@@ -18,7 +18,7 @@ def seed_fun(n):
         restaurant=restaurants.objects.create(
                 restaurantName=restaurantName1,
                 locations=location,
-              
+                hotel=hotel_obj,
                 user=random.choice(user_list)
         )
 def upload_image_in_restaurants():
@@ -53,6 +53,7 @@ def seed_dish_one(pk):
             price=random.randint(100,999),
             restaurants=restaurant,
             user=random.choice(user_list),
+            hotel="hotels"            
         )
 def seed_dish_delete():
     restaurant=restaurants.objects.all()

@@ -7,7 +7,8 @@ from django.core.mail import send_mail
 from .models import hotel,dish,restaurants
 import os,glob
 
-users=User.objects.all() 
+hotel_obj=hotel.objects.get(id=3)
+users=User.objects.all()
 user_list=list(users) 
 
 def seed_fun(n):
@@ -18,7 +19,7 @@ def seed_fun(n):
         restaurant=restaurants.objects.create(
                 restaurantName=restaurantName1,
                 locations=location,
-              
+                hotel=hotel_obj,
                 user=random.choice(user_list)
         )
 def upload_image_in_restaurants():
@@ -40,7 +41,7 @@ def seed_dish():
                 price=random.randint(100,999),
                 restaurants=rest,
                 user=random.choice(user_list),
-                hotel="vj"            
+                hotel=hotel_obj            
             )
 def seed_dish_one(pk):
     restaurant=restaurants.objects.get(id=pk)
@@ -53,6 +54,7 @@ def seed_dish_one(pk):
             price=random.randint(100,999),
             restaurants=restaurant,
             user=random.choice(user_list),
+            hotel=hotel_obj            
         )
 def seed_dish_delete():
     restaurant=restaurants.objects.all()
@@ -90,7 +92,7 @@ def upload_images_one(restid):
                     obj.save()           
 def register_user_to_send_mail(receiver_email,fullname):
     # hotel_obj=hotel.objects.get(id=3)
-    hotel_name="vj Hotels"
+    hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     email_content = f"""
 Subject: Welcome to {hotel_name} – Your Account is Ready!
@@ -142,8 +144,9 @@ Vijay Gholve
     
 
 
+hotel_obj=hotel.objects.get(id=3)
 def send_mail_to_all_seed():
-    hotel_name="vj"
+    hotel_name=hotel_obj.name
     subject=f"Welcome to {hotel_name} – Your Account is Ready!"
     for i in users:
         email_content = f"""
