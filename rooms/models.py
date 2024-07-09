@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
+import uuid 
+from django.utils import timezone
+
 class Room(models.Model):
+    id = models.AutoField(primary_key=True, default=timezone.now)
+
     ROOM_TYPE_CHOICES = [
         ('1BHK', '1BHK'),
         ('2BHK', '2BHK'),
@@ -27,7 +31,7 @@ class Room(models.Model):
         
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE ,null=True,blank=True)
     start_date = models.DateField()
     end_date = models.DateField()
     total_price = models.DecimalField(max_digits=10, decimal_places=2)

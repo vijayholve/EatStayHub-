@@ -102,14 +102,24 @@ WSGI_APPLICATION = 'hotels.wsgi.application'
 DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hotels',  # Your database name
+        'USER': 'root',  # Your database user
+        'PASSWORD': 'vijay',  # Your database password
+        'HOST': 'localhost',  # Set to empty string for localhost
+        'PORT': '3306',  # Default MySQL port
     }
+
 }
-
-
 # import dj_database_url
 # DATABASES["default"]=dj_database_url.parse("postgresql://user_databse_user:ItGsxeYeqbYUdQLoLh8GsMGcjUHAXU7o@dpg-cpujmqqj1k6c738bgv8g-a.oregon-postgres.render.com/user_databse")
 

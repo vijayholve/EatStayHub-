@@ -7,9 +7,8 @@ from django.core.mail import send_mail
 from .models import hotel,dish,restaurants
 import os,glob
 
-users=User.objects.all() 
-user_list=list(users) 
-
+users="a"
+user_list=list(users)  
 def seed_fun(n):
     for _ in range(n):
         fake=Faker()
