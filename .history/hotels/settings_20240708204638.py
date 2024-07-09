@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 # Vijay/django_pro/hotels/setting.py
+import sys
 import os
 
 
